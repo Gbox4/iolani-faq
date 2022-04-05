@@ -1,0 +1,30 @@
+<script>
+    function changeYear(year) {
+        document.querySelectorAll(".faq").forEach(x => x.style.display = "none")
+        document.querySelectorAll(`.year${year}`).forEach(x => x.style.display = "block")
+    }
+    
+    const years = [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]
+    window.onload = () => {
+        document.querySelectorAll(".faq").forEach(x => x.style.display = "none")
+
+        let yearbuttons = document.getElementById("yearbuttons")
+        years.forEach(x => {
+            let newbutton = document.createElement("button")
+            newbutton.innerHTML = x
+            newbutton.onclick = () => {changeYear(x)}
+            yearbuttons.appendChild(newbutton)
+        })
+    }
+</script>
+
+<div>
+    <p>What year is your child in</p>
+    <div id="yearbuttons">
+    </div>
+    <p class="faq year2022">info for 2022</p>
+    <p class="faq year2023">info for 2023</p>
+    <p class="faq year2023 year2024">info for 2023 and 2024</p>
+</div>
+
+buy ipad or reutrn ipad
