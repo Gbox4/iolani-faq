@@ -1,30 +1,87 @@
 <script>
-    function changeYear(year) {
-        document.querySelectorAll(".faq").forEach(x => x.style.display = "none")
-        document.querySelectorAll(`.year${year}`).forEach(x => x.style.display = "block")
+    function changeYear() {
+        updateContent()
+    }
+
+    function changeBuying(x) {
+        if (x) {
+            document.getElementById("buying").style.backgroundColor = "rgb(200,16,46)"
+            document.getElementById("returning").style.backgroundColor = "rgb(119, 119, 119)"
+        }
+        else {
+            document.getElementById("returning").style.backgroundColor = "rgb(200,16,46)"
+            document.getElementById("buying").style.backgroundColor = "rgb(119, 119, 119)"
+        }
+        buying = x
+        updateContent()
+    }
+    
+    function updateContent() {
+        let year = document.getElementById("yearSelect").value
+        if (year && buying!==null) {
+            document.querySelectorAll(".faq").forEach(x => x.style.display = "none")
+            document.querySelectorAll(`.year${year}`).forEach(x => x.style.display = "block")
+            if (buying) {
+                document.querySelectorAll(".returning").forEach(x => x.style.display = "none")
+            }
+            else {
+                document.querySelectorAll(".buying").forEach(x => x.style.display = "none")
+            }
+        }
     }
     
     const years = [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]
+    let buying = null
+
     window.onload = () => {
         document.querySelectorAll(".faq").forEach(x => x.style.display = "none")
-
-        let yearbuttons = document.getElementById("yearbuttons")
+        let select = document.getElementById("yearSelect")
         years.forEach(x => {
-            let newbutton = document.createElement("button")
-            newbutton.innerHTML = x
-            newbutton.onclick = () => {changeYear(x)}
-            yearbuttons.appendChild(newbutton)
+            let newOption = document.createElement("option")
+            newOption.innerHTML = x
+            newOption.value = x
+            select.appendChild(newOption)
         })
     }
 </script>
 
+<style>
+    * {
+        margin: 0;
+    }
+
+    button {
+        background-color: rgb(119, 119, 119);
+        border-radius: 8px;
+        border-width: 0;
+        color: white;
+        cursor: pointer;
+        display: inline-block;
+        margin: 0;
+        padding: 10px 12px;
+        text-align: center;
+        vertical-align: baseline;
+        transition: all 0.25s;
+    }
+</style>
+
 <div>
-    <p>What year is your child in</p>
-    <div id="yearbuttons">
-    </div>
+    <p>
+        My child is graduating in the year
+        <select id="yearSelect" onchange="changeYear()">
+            <option value="">Select...</option>
+        </select>
+    </p>
+    <p>
+        I would like to
+        <button id="buying" onclick="changeBuying(true)">Buy my iPad</button>
+        <button id="returning" onclick="changeBuying(false)">Return my iPad</button>
+    </p>
+
     <p class="faq year2022">info for 2022</p>
     <p class="faq year2023">info for 2023</p>
     <p class="faq year2023 year2024">info for 2023 and 2024</p>
+    <p class="faq year2025">general info for 2025</p>
+    <p class="faq year2025 buying">buying info for 2025</p>
+    <p class="faq year2025 returning">returning info for 2025</p>
 </div>
-
-buy ipad or reutrn ipad
