@@ -29,19 +29,21 @@
             }
         }
     }
+
+    function toggleElement(id) {
+        const e = document.getElementById(id)
+        if (e.style.display === "none") {
+            e.style.display = ''
+        }
+        else {
+            e.style.display = 'none'
+        }
+    }
     
-    const years = [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]
     let buying = null
 
     window.onload = () => {
         document.querySelectorAll(".faq").forEach(x => x.style.display = "none")
-        let select = document.getElementById("yearSelect")
-        years.forEach(x => {
-            let newOption = document.createElement("option")
-            newOption.innerHTML = x
-            newOption.value = x
-            select.appendChild(newOption)
-        })
     }
 </script>
 
@@ -70,6 +72,19 @@
         My child is graduating in the year
         <select id="yearSelect" onchange="changeYear()">
             <option value="">Select...</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+            <option value="2029">2029</option>
+            <option value="2030">2030</option>
+            <option value="2031">2031</option>
+            <option value="2032">2032</option>
+            <option value="2033">2033</option>
+            <option value="2034">2034</option>
         </select>
     </p>
     <p>
@@ -84,4 +99,20 @@
     <p class="faq year2025">general info for 2025</p>
     <p class="faq year2025 buying">buying info for 2025</p>
     <p class="faq year2025 returning">returning info for 2025</p>
+
+
+    <div class="faq year2025 buying">
+        <p><a href="javascript:toggleElement('a1')">What do I have to do to purchase my iPad?</a></p>
+        <p style="display: none;" id="a1">Come to campus on morning June 4</p>
+
+        <p><a href="javascript:toggleElement('a2')">When do I have to commit to purchasing my iPad?</a></p>
+        <p style="display: none;" id="a2">Commit by May 20</p>
+    </div>
+
+    <div class="faq year2025 returning">
+        <p><a href="javascript:toggleElement('a3')">What do I have to do to purchase my iPad?</a></p>
+        <p style="display: none;" id="a3">Come to campus on morning June 6</p>
+    </div>
+
+
 </div>
